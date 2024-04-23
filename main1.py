@@ -44,6 +44,6 @@ if zapytanie.lower() != "y":
         print(wydatki_uzytk.wyswietl())
         print(f"Twój przychód to: {wydatki_uzytk.oblicz()} zł")
         print("-----------------------------")
-    print(f"Suma Twojego dochodu: {suma_dochodu} zł")
+    print(f"Suma Twojego dochodu: {suma_dochodu} złk")
 
 root.mainloop()
