@@ -1,49 +1,56 @@
 import tkinter as tk
 from tkinter import simpledialog
 
-print("Witaj w aplikacji zarządzania budżetem")
+print("Welcome to the Budget Management App")
 
-class Wydatki:
-    def __init__(self, przychod, koszt, data, kategoria):
-        self.przychod = przychod
-        self.koszt = koszt
-        self.data = data
-        self.kategoria = kategoria
 
-    def wyswietl(self):
-       return f"Twój przychód {self.przychod}\nTwój koszt {self.koszt}\nData: {self.data}\nKategoria: {self.kategoria}"
+class Expense:
+    def __init__(self, income, cost, date, category):
+        self.income = income
+        self.cost = cost
+        self.date = date
+        self.category = category
 
-    def oblicz(self):
-        wynik = self.przychod - self.koszt
-        return wynik
+    def display(self):
+        return f"Your income: {self.income}\nYour cost: {self.cost}\nDate: {self.date}\nCategory: {self.category}"
+
+    def calculate(self):
+        result = self.income - self.cost
+        return result
+
 
 root = tk.Tk()
 root.geometry("500x500")
 root.withdraw()
 
-lista_wydatkow = []
-suma_dochodu = 0
-zapytanie = 'y'
+expenses_list = []
+total_income = 0
+query = 'y'
 
-while zapytanie.lower() == 'y':
-    przychod = float(simpledialog.askstring("Input", "Podaj przychód: "))
-    koszt = float(simpledialog.askstring("Input", "Podaj koszt: "))
-    data = simpledialog.askstring("Input", "Podaj date DD-MM-YYYY: ")
-    kategoria = simpledialog.askstring("Input", "Podaj kategorię: ")
-    zapytanie = simpledialog.askstring("Input", "Czy chcesz kontynuować wprowadzanie ?  y/n")
+while query.lower() == 'y':
+    try:
+        income = float(simpledialog.askstring("Input", "Enter your income: "))
+        cost = float(simpledialog.askstring("Input", "Enter your cost: "))
+    except ValueError:
+        print("Invalid input entered")
+        break
 
-    wydatki_uzytk = Wydatki(przychod, koszt, data, kategoria)
-    wydatki_uzytk.wyswietl()
+    date = simpledialog.askstring("Input", "Enter the date DD-MM-YYYY: ")
+    category = simpledialog.askstring("Input", "Enter the category: ")
+    query = simpledialog.askstring("Input", "Do you want to continue entering data? y/n")
 
-    lista_wydatkow.append(wydatki_uzytk)
-    suma_dochodu += wydatki_uzytk.oblicz()
+    user_expense = Expense(income, cost, date, category)
+    user_expense.display()
 
-if zapytanie.lower() != "y":
-    print("Dziękuję, oto twoje statystyki \n-----------------------------")
-    for wydatki_uzytk in lista_wydatkow:
-        print(wydatki_uzytk.wyswietl())
-        print(f"Twój przychód to: {wydatki_uzytk.oblicz()} zł")
+    expenses_list.append(user_expense)
+    total_income += user_expense.calculate()
+
+if query.lower() != "y":
+    print("Thank you, here are your statistics \n-----------------------------")
+    for user_expense in expenses_list:
+        print(user_expense.display())
+        print(f"Your balance is: {user_expense.calculate()} $")
         print("-----------------------------")
-    print(f"Suma Twojego dochodu: {suma_dochodu} złw")
+    print(f"Total income: {total_income} $")
 
-root.mainloop()
+    root.destroy()
