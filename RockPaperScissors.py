@@ -30,5 +30,8 @@ while NumberOfGames != games:
     print("--------------------------")
 
 if YourScore > ComputerScore:
-        print("You won 100$")
-
+        print("You Won!")
+elif YourScore == ComputerScore:
+        print("Draw!")
+elif YourScore < ComputerScore:
+        print("You Lost!")
