@@ -15,10 +15,3 @@ while True:
         break
 
 
-
-# odp = int(input("Czy chcesz wyczyścić tekst: (0/1)"))
-# # if odp == 1:
-#     def clear_text():
-#         open('readme.txt', 'w').close()
-#         print("Wyczyszczono")
-#     clear_text()
