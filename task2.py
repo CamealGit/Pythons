@@ -11,7 +11,7 @@ while True:
     try:
         choice = int(choice)
     except ValueError:
-        print("Nie wpisales liczby VALUEERROR")
+        print("Nie wpisales liczby")
 
     try:
         a = int(a)
