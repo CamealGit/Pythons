@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
+import joblib
 
 stud_data = pd.read_csv('StudentsPerformance.csv')
 
@@ -62,9 +63,14 @@ print(f'R2:, {r2:.3f}')
 
 # Predicting test data
 
+
 input_data = [[0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,1.000000,1.000000,0.324041,0.947790,0.654857]]
 
 input_df = pd.DataFrame(input_data, columns=X.columns)
 
 predicted_score = model.predict(input_df)
 print(f'Expected average rating: {predicted_score[0]:.2f}')
+
+joblib.dump(model, 'trained_model.pkl')
+joblib.dump(scaler, 'scaler.pkl')
+joblib.dump(label_encoder, 'label_encoder.pkl')
